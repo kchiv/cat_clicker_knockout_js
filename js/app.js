@@ -1,17 +1,13 @@
-var ViewModel = function() {
+var Cat = function() {
 	this.clickCount = ko.observable(0);
 	this.name = ko.observable('Tabby');
 	this.imgSrc = ko.observable('img/434164568_fea0ad4013_z.jpg');
 	this.imgAttribution = ko.observable('http://www.google.com');
 
-	this.incrementCounter = function() {
-		this.clickCount(this.clickCount() + 1);
-	};
-
 	this.cats = ko.observableArray([
-	    { nickname: "Bungle" },
-	    { nickname: "George" },
-	    { nickname: "Zippy" }
+	    { nickname: "Tabster" },
+	    { nickname: "Lil Tabs" },
+	    { nickname: "Tabs not Spaces" }
     ]);
 
 	this.level = ko.computed(function() {
@@ -23,6 +19,17 @@ var ViewModel = function() {
 			return 'infant';
 		}
 	}, this);
+
+} 
+
+var ViewModel = function() {
+
+	this.currentCat = ko.observable( new Cat() );
+
+	this.incrementCounter = function() {
+		this.currentCat().clickCount(this.currentCat().clickCount() + 1);
+	};
+
 }
 
 ko.applyBindings(new ViewModel());
